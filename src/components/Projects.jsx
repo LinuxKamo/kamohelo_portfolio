@@ -1,11 +1,11 @@
 import { memo } from "react";
 import cineby from "../assets/Cineby.png";
 import BookStrore from "../assets/bookStore.png";
-import BookStroreBeta from "../assets/bookStore(beta).png"
+import BookStroreBeta from "../assets/bookStore_beta.png"
 import Melula from "../assets/Melula.png"
 import TaskMananger from "../assets/TaskMananger.png"
 import ReciepFinder from "../assets/ReciepFinder.png"
-import ReciepFinderBeta from "../assets/ReciepFinder(beta).png"
+import ReciepFinderBeta from "../assets/ReciepFinder_beta.png"
 
 function Projects() {
   const projects = [
