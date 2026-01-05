@@ -1,0 +1,100 @@
+{
+  "technologies": [
+    {
+      "name": "C#",
+      "type": "Language",
+      "importance": "High",
+      "description": "C# is a versatile programming language used for building desktop apps, games (Unity), and enterprise software. Strongly typed, object-oriented, and powerful for Windows environments.",
+      "usage": "Enterprise applications, Unity games, backend development",
+      "color": "#9b59b6"
+    },
+    {
+      "name": "TypeScript",
+      "type": "Language",
+      "importance": "High",
+      "description": "TypeScript is a superset of JavaScript that adds types, enabling safer and more maintainable web applications. Highly popular in modern web development.",
+      "usage": "Web applications, React, Node.js projects",
+      "color": "#3178c6"
+    },
+    {
+      "name": "React.js",
+      "type": "Framework",
+      "importance": "High",
+      "description": "React.js is a powerful JavaScript library for building interactive user interfaces. It enables component-based architecture and efficient UI updates.",
+      "usage": "Single-page applications, dashboards, modern web apps",
+      "color": "#61dafb"
+    },
+    {
+      "name": "Next.js (TypeScript)",
+      "type": "Framework",
+      "importance": "High",
+      "description": "Next.js is a React framework that adds server-side rendering, routing, and performance optimizations. Using it with TypeScript improves scalability and maintainability.",
+      "usage": "Production websites, SEO-friendly apps, full-stack web apps",
+      "color": "#000000"
+    },
+    {
+      "name": "HTML",
+      "type": "Language",
+      "importance": "Essential",
+      "description": "HTML is the backbone of the web. All websites use HTML to structure content and elements.",
+      "usage": "Web pages, web apps, emails",
+      "color": "#e34f26"
+    },
+    {
+      "name": "Python",
+      "type": "Language",
+      "importance": "Medium",
+      "description": "Python is a versatile scripting language. You mainly write scripts for automation, data processing, or small backend tasks.",
+      "usage": "Automation scripts, data processing, simple backend",
+      "color": "#306998"
+    },
+    {
+      "name": "SQL",
+      "type": "Database",
+      "importance": "High",
+      "description": "SQL is used to manage and query relational databases. It is essential for storing, retrieving, and managing application data.",
+      "usage": "Databases, backend systems, data-driven applications",
+      "color": "#f29111"
+    },
+    {
+      "name": "Flutter",
+      "type": "Framework",
+      "importance": "Medium",
+      "description": "Flutter is a UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.",
+      "usage": "Mobile apps, cross-platform applications",
+      "color": "#02569b"
+    },
+    {
+      "name": "CSS",
+      "type": "Styling",
+      "importance": "Essential",
+      "description": "CSS is used to style web content. From colors to layouts, it’s essential for making web pages visually appealing.",
+      "usage": "Web styling, layouts, responsive design",
+      "color": "#264de4"
+    },
+    {
+      "name": "TailwindCSS",
+      "type": "Framework",
+      "importance": "High",
+      "description": "TailwindCSS is a utility-first CSS framework that speeds up styling and makes responsive design easy.",
+      "usage": "Modern web apps, responsive designs, rapid prototyping",
+      "color": "#38b2ac"
+    },
+    {
+      "name": "Bootstrap",
+      "type": "Framework",
+      "importance": "Medium",
+      "description": "Bootstrap is a classic CSS framework for building responsive websites quickly with prebuilt components.",
+      "usage": "Quick layouts, web apps, landing pages",
+      "color": "#563d7c"
+    },
+    {
+      "name": "Sass / SCSS",
+      "type": "Styling",
+      "importance": "Medium",
+      "description": "Sass/SCSS extends CSS with variables, nesting, and reusable styles. Great for larger projects.",
+      "usage": "Web projects with complex styling, scalable CSS",
+      "color": "#cc6699"
+    }
+  ]
+}

@@ -1,22 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { CONTACTME, EXPECTIES, HOME, PROJECTS } from "./data/Page";
+import Technologies from "./pages/Technologies";
+import Projects from "./pages/Projects";
+import ContactMe from "./pages/ContactMe";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-     <BrowserRouter>
+    <Router>
+      <ScrollToTop/>
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path={HOME} element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path={EXPECTIES} element={<Technologies/>}/>
+          <Route path={PROJECTS} element={<Projects/>}/>
+          <Route path ={CONTACTME} element={<ContactMe/>}/>
+          {/* Catch-all route for 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
-     </BrowserRouter>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;

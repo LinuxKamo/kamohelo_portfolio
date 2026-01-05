@@ -1,0 +1,40 @@
+{
+  "projects": [
+    {
+      "title": "Melula Website",
+      "description": "A modern e-commerce site for selling digital and physical products.",
+      "image": "./Melula.png",
+      "tag": "Web Design",
+      "link": "https://melula.onrender.com/"
+    },
+    {
+      "title": "Movie Website",
+      "description": "A streaming platform design concept with a clean, cinematic interface.",
+      "image": "./Cineby.png",
+      "tag": "UI/UX",
+      "link": "https://cineby-eb29.vercel.app/"
+    },
+    {
+      "title": "BookSell Website",
+      "description": "An online bookstore platform with user-friendly navigation and sleek design.",
+      "image": "./BookStore_beta.png",
+      "tag": "E-Commerce",
+      "link": "https://bookstore-frontend-test-3imh.onrender.com/"
+    },
+    {
+      "title": "Reciep Finder",
+      "description": "A productivity tool focused on goal planning and tracking with clarity.",
+      "image": "./ReciepFinder_beta.png",
+      "tag": "Productivity",
+      "link": "https://recipe-finder-b2ik.onrender.com/"
+    }
+    ,
+    {
+      "title": "Task Mananger",
+      "description": "A productivity tool focused on task planning and tracking with clarity.",
+      "image": "./TaskMananger.png",
+      "tag": "Productivity",
+      "link": "https://task-managment-pi-nine.vercel.app/"
+    }
+  ]
+}

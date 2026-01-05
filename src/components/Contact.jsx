@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { FaEnvelope, FaPhoneAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 
 function Contact() {
