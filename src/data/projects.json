@@ -12,7 +12,7 @@
       "description": "A streaming platform design concept with a clean, cinematic interface.",
       "image": "./Cineby.png",
       "tag": "UI/UX",
-      "link": "https://cineby-eb29.vercel.app/"
+      "link": "https://cineby-phqp.onrender.com"
     },
     {
       "title": "BookSell Website",
@@ -34,7 +34,7 @@
       "description": "A productivity tool focused on task planning and tracking with clarity.",
       "image": "./TaskMananger.png",
       "tag": "Productivity",
-      "link": "https://task-managment-pi-nine.vercel.app/"
+      "link": "https://taskmanagment-j7f9.onrender.com"
     }
   ]
 }
