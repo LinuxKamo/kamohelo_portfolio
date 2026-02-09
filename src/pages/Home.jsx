@@ -1,13 +1,15 @@
-import { memo } from "react";
-import { motion } from "framer-motion";
+import { memo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import ProjectCard from "../components/ui/ProjectCard";
 import me from "../assets/me.jpg";
 import projectsData from "../data/projects.json";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PROJECTS } from "../data/Page";
+import { ArrowRight } from "lucide-react";
 
 function Home() {
   const projects = projectsData.projects.slice(0, 3);
+  const [activeProject, setActiveProject] = useState(projects[0]);
   const navigate = useNavigate();
 
   // Variants for fade-in
@@ -25,7 +27,7 @@ function Home() {
 
   return (
     <motion.div
-      className="overflow-y-auto"
+      className="flex flex-col space-y-10"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -51,8 +53,8 @@ function Home() {
           </h1>
           <p className="text-[#b08d3a] text-lg md:text-xl">
             I build beautiful websites and digital experiences for brands and
-            individuals. Welcome to my portfolio. I specialize in clean,
-            modern, and functional design that stands out.
+            individuals. Welcome to my portfolio. I specialize in clean, modern,
+            and functional design that stands out.
           </p>
 
           {/* Optional CTA */}
@@ -61,44 +63,72 @@ function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             variants={fadeUp}
-            onClick={()=>navigate(PROJECTS)}
+            onClick={() => navigate(PROJECTS)}
           >
             See All My Work
           </motion.button>
         </motion.div>
       </motion.section>
 
-      {/* Projects / Highlights */}
-      <motion.section
-        className="mb-16 flex flex-col space-y-5 w-full"
-        variants={fadeUp}
-      >
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-        >
-          {projects.map((project, index) => (
-            <motion.div key={index} variants={fadeUp}>
+      <motion.section className="flex flex-col min-w-full">
+        <motion.div className="flex flex-col md:flex-row justify-between items-center md:items-start sm:items-center w-full mb-6 text-[#e0c068]">
+          <div className="flex flex-col space-y-1">
+            <h1 className="text-2xl sm:text-3xl font-semibold font-serif tracking-tight ">
+              Featured Projects
+            </h1>
+            <h4 className="text-sm sm:text-lg text-[#b08d3a] font-semibold">
+              My most recent and top work
+            </h4>
+          </div>
+
+          <Link
+            to={PROJECTS}
+            className=" ml-auto md:ml-0 flex flex-row space-x-2 sm:space-x-3 items-center mt-3 sm:mt-0 font-semibold text-[#6aa84f] hover:text-[#557248] text-sm sm:text-base"
+          >
+            <span className="line-clamp-1 ">View all</span>
+            <ArrowRight className="size-4 sm:size-5" />
+          </Link>
+        </motion.div>
+        <motion.div className="grid grid-cols-1 md:grid-cols-[60%_38%] gap-10">
+          <div className="flex flex-col justify-between space-y-5">
+            {projects.map((project, _i) => (
+              <motion.div
+                key={_i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setActiveProject(project)}
+                className="rounded-xl border-l-4 border-[#6aa84f] bg-[#1f1b14]/90 p-4 shadow-lg cursor-pointer"
+              >
+                <h4 className="text-lg mb-1 text-[#e0c068]">{project.title}</h4>
+                <p className="text-xs text-[#b08d3a] line-clamp-2 font-sans">
+                  {project.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+          {/* CENTER: Active project card */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProject.title} // triggers AnimatePresence on project change
+              initial={{ rotateY: 180, opacity: 0 }} // start flipped
+              animate={{ rotateY: 0, opacity: 1 }} // flip into view
+              exit={{ rotateY: -180, opacity: 0 }} // flip out
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="perspective-1000" // required for 3D flip effect
+            >
               <ProjectCard
-                description={project.description}
-                image={project.image}
-                tag={project.tag}
-                title={project.title}
-                link={project.link}
+                title={activeProject.title}
+                image={activeProject.image}
+                description={activeProject.description}
+                tag={activeProject.tag}
+                link={activeProject.link}
               />
             </motion.div>
-          ))}
+          </AnimatePresence>
         </motion.div>
-
-        <motion.button
-          className="text-2xl font-serif text-[#e0c068] font-bold bg-amber-500/10 tracking-wider rounded-lg px-4 py-2 mt-8 hover:bg-amber-500/20 transition-all"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          variants={fadeUp}
-          onClick={()=>navigate(PROJECTS)}
-        >
-          More of my work
-        </motion.button>
       </motion.section>
 
       {/* Contact / Call to Action */}

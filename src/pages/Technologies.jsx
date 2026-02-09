@@ -17,7 +17,7 @@ function Technologies() {
 
   return (
     <motion.div
-      className="overflow-y-auto text-[#b08d3a]"
+      className="text-[#b08d3a]"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

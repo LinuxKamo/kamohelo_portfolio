@@ -1,8 +1,14 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 function ProjectCard({ title, image, description, tag, link }) {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className="w-full">
+    <Link
+      to={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-full"
+    >
       <div
         className="
           bg-[#1f1b14]
@@ -10,7 +16,6 @@ function ProjectCard({ title, image, description, tag, link }) {
           shadow-xl
           overflow-hidden
           hover:scale-105
-          hover:shadow-2xl
           transition-all
           duration-300
           cursor-pointer
@@ -30,7 +35,7 @@ function ProjectCard({ title, image, description, tag, link }) {
           </span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
