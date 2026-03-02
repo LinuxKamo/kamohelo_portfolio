@@ -3,3 +3,11 @@
 html {
   scroll-behavior: smooth;
 }
+.text-stroke {
+  -webkit-text-stroke: 1px rgb(196, 148, 17);;
+  color: transparent;
+}
+.text-stroke-blue {
+  -webkit-text-stroke: 3px rgb(20, 81, 167);;
+  color: transparent;
+}
