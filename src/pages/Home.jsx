@@ -2,9 +2,9 @@ import { memo, useEffect, useState } from "react";
 import projectsData from "../data/projects.json";
 import bgImage from "/backgroud_image.png";
 import { ProjectShowcase } from "../components/ui/ProjectShowCase";
+import { Sidebar } from "../components/ui/Sidebar";
 
 function Home() {
-  // const projects = projectsData.projects.slice(0, 3);
   const projects = projectsData.projects;
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -30,9 +30,10 @@ function Home() {
       setTimeout(() => setIsScrolling(false), 800);
     };
 
-    window.addEventListener("wheel", handleWheel);
+    window.addEventListener("wheel", handleWheel, { passive: false });
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [isScrolling, showDetails]);
+  }, [isScrolling, showDetails, projects.length]);
+
   const onNext = () =>
     setCurrentProjectIndex((prev) =>
       prev < projects.length - 1 ? prev + 1 : prev,
@@ -41,45 +42,43 @@ function Home() {
     setCurrentProjectIndex((prev) => (prev > 0 ? prev - 1 : prev));
 
   const currentProject = projects[currentProjectIndex];
+
   return (
-    <div className="min-h-screen min-w-full bg-[#12100d] text-[#b08d3a">
-      {/* Hearder */}
+    <div className="relative min-h-screen w-full bg-[#12100d] text-[#b08d3a] overflow-hidden flex flex-col items-center justify-center">
+      {/* Background Image Overlay */}
       <div
-        className="min-h-[30vh] min-w-full p-5 bg-cover bg-center flex flex-row justify-between text-5xl font-bold px-10 italic"
+        className="absolute inset-0 w-full h-full opacity-70 pointer-events-none transition-all duration-700"
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(${currentProject.background || bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           maskImage:
-            "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
           WebkitMaskImage:
             "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
         }}
-      >
-        {/* <div className="min-h-full flex flex-col">
-          <span className="text-green-800/90 text-stroke-green text-[5rem] md:text-[10rem]">
-            Design &
-          </span>
-          <span className="text-[3rem] md:text-[5rem] -mt-5 md:-mt-10 text-blue-700/90">Innovate</span>
-        </div> */}
-        {/* <div className="min-h-full flex flex-col text-end">
-          <span className="text-blue-600/90 text-stroke-blue text-[5rem]">Problem Solving</span>
-          <span className="text-[3rem] -mt-10 text-blue-700/90">Win</span>
-        </div> */}
-      </div>
-      {/* Projects */}
-      <div className="relative w-full h-full flex flex-col items-center justify-end px-8">
+      />
+
+      {/* Sidebar - Fixed on Right */}
+      <Sidebar project={currentProject} />
+
+      {/* Projects Container - Centered */}
+      <div className="relative z-10 w-full mx-auto px-6 md:px-12 xl:pr-96 flex flex-col justify-center">
         <ProjectShowcase
           project={currentProject}
+          projects={projects}
           currentIndex={currentProjectIndex}
           totalProjects={projects.length}
           onNext={onNext}
           onPrev={onPrev}
+          onSelect={(index) => setCurrentProjectIndex(index)}
         />
       </div>
 
       {/* Scroll indicator */}
-      <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 text-white text-sm opacity-50">
-        Scroll to navigate projects
-      </div>
+      {/* <div className="hidden md:block absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 text-white/50 text-sm tracking-widest uppercase">
+        Scroll to navigate
+      </div> */}
     </div>
   );
 }
