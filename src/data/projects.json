@@ -3,10 +3,14 @@
     {
       "id": 1,
       "background": "/smoke.jpg",
-      "name": "Melula Website",
+      "name": "Shisha Website",
       "startDate": "2025",
-      "video": "/video.mp4",
-      "thumbnails": ["/projects/Melula.png", "/smoke.jpg"],
+      "video": "/projects/shisha.mp4",
+      "thumbnails": [
+        "/projects/shishaMobile.png",
+        "/projects/shishaTablet.png",
+        "/projects/shisha.png"
+      ],
       "description": "A modern e-commerce site for selling digital and physical products.",
       "overview": "Melula is a comprehensive e-commerce solution designed for seamless digital and physical product sales, featuring an intuitive admin dashboard and secure payment integration.",
       "client": "Melula Digital",

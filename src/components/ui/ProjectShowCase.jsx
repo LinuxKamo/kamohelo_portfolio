@@ -61,7 +61,7 @@ export function ProjectShowcase({
               <img
                 src={
                   projects[(currentIndex - 1 + totalProjects) % totalProjects]
-                    ?.thumbnails[0]
+                    ?.background
                 }
                 alt="Previous project"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

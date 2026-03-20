@@ -34,9 +34,9 @@ function Projects() {
   }
 
   // Image fallbacks (desktop, tablet, mobile)
-  const desktopImg = project.thumbnails?.[0];
+  const desktopImg = project.thumbnails?.[2];
   const tabletImg = project.thumbnails?.[1] ?? desktopImg;
-  const mobileImg = project.thumbnails?.[2] ?? desktopImg;
+  const mobileImg = project.thumbnails?.[0] ?? desktopImg;
 
   const onNext = () => {
     const nextId =
@@ -100,15 +100,25 @@ function Projects() {
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-12"
         >
-          <motion.div variants={fadeIn} className="col-span-1 md:col-span-2 space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Project Essentials</h2>
+          <motion.div
+            variants={fadeIn}
+            className="col-span-1 md:col-span-2 space-y-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Project Essentials
+            </h2>
             <p className="text-white/70 text-lg leading-relaxed max-w-3xl">
               {project.overview}
             </p>
           </motion.div>
-          <motion.div variants={fadeIn} className="col-span-1 space-y-8 bg-white/5 border border-[#b08d3a]/10 p-8 rounded-4xl backdrop-blur-sm">
+          <motion.div
+            variants={fadeIn}
+            className="col-span-1 space-y-8 bg-white/5 border border-[#b08d3a]/10 p-8 rounded-4xl backdrop-blur-sm"
+          >
             <div>
-              <h4 className="text-[10px] uppercase tracking-widest text-[#b08d3a] font-bold mb-3 opacity-60">Technologies Used</h4>
+              <h4 className="text-[10px] uppercase tracking-widest text-[#b08d3a] font-bold mb-3 opacity-60">
+                Technologies Used
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
                   <span
