@@ -13,9 +13,6 @@ export function Sidebar({ project }) {
             className="w-full h-full object-cover"
           />
         </div>
-        <h2 className="text-xl font-bold text-white tracking-tight">
-          By : Kamohelo Motaung
-        </h2>
         <p className="text-sm text-[#b08d3a]/70 font-semibold uppercase tracking-widest">
           Full Stack Developer
         </p>

@@ -11,6 +11,7 @@ export function ProjectShowcase({
   onNext,
   onPrev,
   onSelect,
+  onVideoLoad,
 }) {
   const videoRef = useRef(null);
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ export function ProjectShowcase({
               loop
               muted
               playsInline
+              onCanPlayThrough={onVideoLoad}
             >
               <source src={project.video} type="video/mp4" />
             </video>

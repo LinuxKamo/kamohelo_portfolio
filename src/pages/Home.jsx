@@ -1,17 +1,33 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useCallback } from "react";
 import projectsData from "../data/projects.json";
 import bgImage from "/backgroud_image.png";
 import { ProjectShowcase } from "../components/ui/ProjectShowCase";
 import { Sidebar } from "../components/ui/Sidebar";
+import { LoadingScreen } from "../components/ui/LoadingScreen";
+import { AnimatePresence } from "motion/react";
 
 function Home() {
   const projects = projectsData.projects;
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  
+  // Loading states
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  const handleVideoLoad = useCallback(() => {
+    setIsVideoLoaded(true);
+    // Optional: Auto-hide after a short delay if video is loaded
+    // setTimeout(() => setIsLoading(false), 2000);
+  }, []);
+
+  const handleSkip = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    if (showDetails) return;
+    if (showDetails || isLoading) return;
 
     const handleWheel = (e) => {
       if (isScrolling) return;
@@ -32,7 +48,7 @@ function Home() {
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [isScrolling, showDetails, projects.length]);
+  }, [isScrolling, showDetails, projects.length, isLoading]);
 
   const onNext = () =>
     setCurrentProjectIndex((prev) =>
@@ -45,6 +61,15 @@ function Home() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#12100d] text-[#b08d3a] overflow-hidden flex flex-col items-center justify-center">
+      <AnimatePresence>
+        {isLoading && (
+          <LoadingScreen 
+            onSkip={handleSkip} 
+            isVideoLoaded={isVideoLoaded} 
+          />
+        )}
+      </AnimatePresence>
+
       {/* Background Image Overlay */}
       <div
         className="absolute inset-0 w-full h-full opacity-70 pointer-events-none transition-all duration-700"
@@ -72,6 +97,7 @@ function Home() {
           onNext={onNext}
           onPrev={onPrev}
           onSelect={(index) => setCurrentProjectIndex(index)}
+          onVideoLoad={handleVideoLoad}
         />
       </div>
 
