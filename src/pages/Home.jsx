@@ -18,7 +18,8 @@ function Home() {
   const projects = projectsData.projects;
   const [currentProjectIndex, setCurrentProjectIndex] = useState(() => {
     const savedIndex = sessionStorage.getItem("currentProjectIndex");
-    return savedIndex !== null ? parseInt(savedIndex, 10) : 0;
+    const parsed = savedIndex !== null ? parseInt(savedIndex, 10) : 0;
+    return parsed >= 0 && parsed < projects.length ? parsed : 0;
   });
   const [direction, setDirection] = useState(1);
   const [isScrolling, setIsScrolling] = useState(false);

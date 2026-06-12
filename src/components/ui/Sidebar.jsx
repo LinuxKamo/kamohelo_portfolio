@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from "motion/react";
 import meImage from "../../assets/me.jpg";
 
 export function Sidebar({ project }) {
+  if (!project) return null;
+
   return (
     <div className="fixed right-0 top-0 h-full w-80 bg-[#12100d]/40 backdrop-blur-2xl border-l border-[#b08d3a]/20 z-40 hidden xl:flex flex-col p-8 overflow-y-auto">
       {/* Profile Section */}
