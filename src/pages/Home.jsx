@@ -1,19 +1,38 @@
 import { memo, useEffect, useState, useCallback } from "react";
 import projectsData from "../data/projects.json";
-import bgImage from "/backgroud_image.png";
 import { ProjectShowcase } from "../components/ui/ProjectShowCase";
 import { Sidebar } from "../components/ui/Sidebar";
 import { LoadingScreen } from "../components/ui/LoadingScreen";
 import { AnimatePresence } from "motion/react";
+import { ParticlesBackground } from "../components/ui/ParticlesBackground";
+
+const ambientColors = [
+  { primary: "rgba(176, 141, 58, 0.15)", secondary: "rgba(250, 204, 21, 0.08)" }, // Gold
+  { primary: "rgba(59, 130, 246, 0.15)", secondary: "rgba(96, 165, 250, 0.08)" }, // Blue
+  { primary: "rgba(16, 185, 129, 0.15)", secondary: "rgba(52, 211, 153, 0.08)" }, // Green
+  { primary: "rgba(244, 63, 94, 0.15)", secondary: "rgba(251, 113, 133, 0.08)" }, // Rose
+  { primary: "rgba(168, 85, 247, 0.15)", secondary: "rgba(192, 132, 252, 0.08)" }, // Purple
+];
 
 function Home() {
   const projects = projectsData.projects;
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(() => {
+    const savedIndex = sessionStorage.getItem("currentProjectIndex");
+    return savedIndex !== null ? parseInt(savedIndex, 10) : 0;
+  });
+  const [direction, setDirection] = useState(1);
   const [isScrolling, setIsScrolling] = useState(false);
+
   const [showDetails, setShowDetails] = useState(false);
   
   // Loading states
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    return sessionStorage.getItem("hasVisited") !== "true";
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem("currentProjectIndex", currentProjectIndex);
+  }, [currentProjectIndex]);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const handleVideoLoad = useCallback(() => {
@@ -24,6 +43,7 @@ function Home() {
 
   const handleSkip = () => {
     setIsLoading(false);
+    sessionStorage.setItem("hasVisited", "true");
   };
 
   useEffect(() => {
@@ -35,11 +55,15 @@ function Home() {
       e.preventDefault();
 
       if (e.deltaY > 0) {
-        setCurrentProjectIndex((prev) =>
-          prev < projects.length - 1 ? prev + 1 : prev,
-        );
+        if (currentProjectIndex < projects.length - 1) {
+          setDirection(1);
+          setCurrentProjectIndex((prev) => prev + 1);
+        }
       } else {
-        setCurrentProjectIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        if (currentProjectIndex > 0) {
+          setDirection(-1);
+          setCurrentProjectIndex((prev) => prev - 1);
+        }
       }
 
       setIsScrolling(true);
@@ -50,12 +74,18 @@ function Home() {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [isScrolling, showDetails, projects.length, isLoading]);
 
-  const onNext = () =>
-    setCurrentProjectIndex((prev) =>
-      prev < projects.length - 1 ? prev + 1 : prev,
-    );
-  const onPrev = () =>
-    setCurrentProjectIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  const onNext = () => {
+    if (currentProjectIndex < projects.length - 1) {
+      setDirection(1);
+      setCurrentProjectIndex((prev) => prev + 1);
+    }
+  };
+  const onPrev = () => {
+    if (currentProjectIndex > 0) {
+      setDirection(-1);
+      setCurrentProjectIndex((prev) => prev - 1);
+    }
+  };
 
   const currentProject = projects[currentProjectIndex];
 
@@ -70,19 +100,29 @@ function Home() {
         )}
       </AnimatePresence>
 
-      {/* Background Image Overlay */}
-      <div
-        className="absolute inset-0 w-full h-full opacity-70 pointer-events-none transition-all duration-700"
-        style={{
-          backgroundImage: `url(${currentProject.background || bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          maskImage:
-            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
-        }}
-      />
+      {/* Ambient Glow Effects */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        {ambientColors.map((colors, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentProjectIndex % ambientColors.length ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <div
+              className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full mix-blend-screen filter blur-[120px]"
+              style={{ backgroundColor: colors.primary }}
+            />
+            <div
+              className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full mix-blend-screen filter blur-[100px]"
+              style={{ backgroundColor: colors.secondary }}
+            />
+          </div>
+        ))}
+      </div>
+
+      <ParticlesBackground projectIndex={currentProjectIndex} />
+
 
       {/* Sidebar - Fixed on Right */}
       <Sidebar project={currentProject} />
@@ -93,6 +133,7 @@ function Home() {
           project={currentProject}
           projects={projects}
           currentIndex={currentProjectIndex}
+          direction={direction}
           totalProjects={projects.length}
           onNext={onNext}
           onPrev={onPrev}
