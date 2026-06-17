@@ -79,7 +79,7 @@
       "background": "/books.jpg",
       "name": "BookSell Website",
       "startDate": "2025",
-      "video": "/video.mp4",
+      "video": "/projects/books.mp4",
       "thumbnails": ["/projects/book_mobile.png", "/projects/book_tablet.png", "/projects/book_laptop.png"],
       "description": "An online bookstore platform with user-friendly navigation and sleek design.",
       "overview": "A robust bookstore platform that empowers local sellers to manage inventory and connect with readers through a streamlined, mobile-first experience.",
