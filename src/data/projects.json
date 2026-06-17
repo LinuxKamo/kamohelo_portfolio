@@ -2,6 +2,33 @@
   "projects": [
     {
       "id": 1,
+      "background": "/projects/metrolink_bg.png",
+      "name": "Metrolink",
+      "startDate": "2026",
+      "video": "/projects/metroLink.mp4",
+      "thumbnails": [
+        "/projects/metroLink_mobile.png",
+        "/projects/metroLink_tablet.png",
+        "/projects/metrolink_laptop.png"
+      ],
+      "description": "A comprehensive transport and logistics management platform.",
+      "overview": "Metrolink is an advanced transport management system designed to streamline operations, featuring driver oversight, trip scheduling, and real-time administrative dashboards.",
+      "client": "Metrolink",
+      "role": "Full Stack Developer",
+      "tags": ["Logistics", "Web App", "Dashboard"],
+      "stack": ["Next.js", "TypeScript", "Node.js", "Prisma"],
+      "teamType": "Solo Project",
+      "problem": "Managing large-scale transport logistics requires centralized, real-time oversight and complex role-based access control.",
+      "solution": "Built a comprehensive dashboard with Super Admin controls and robust driver management.",
+      "lessonsLearned": [
+        "Role-based access control",
+        "Monorepo architecture",
+        "Data visualization"
+      ],
+      "link": "https://metrolink-production-web.vercel.app/"
+    },
+    {
+      "id": 2,
       "background": "/smoke.jpg",
       "name": "Shisha Website",
       "startDate": "2025",
@@ -29,7 +56,7 @@
       "link": "https://melula.onrender.com/"
     },
     {
-      "id": 2,
+      "id": 3,
       "background": "/movies.jpg",
       "name": "Movie Website (Cineby)",
       "startDate": "2025",
@@ -48,7 +75,7 @@
       "link": "https://cineby-phqp.onrender.com"
     },
     {
-      "id": 3,
+      "id": 4,
       "background": "/books.jpg",
       "name": "BookSell Website",
       "startDate": "2025",
@@ -67,7 +94,7 @@
       "link": "https://bookstore-frontend-test-3imh.onrender.com/"
     },
     {
-      "id": 4,
+      "id": 5,
       "background": "/recipe.png",
       "name": "Recipe Finder",
       "startDate": "2025",
@@ -86,7 +113,7 @@
       "link": "https://recipe-finder-b2ik.onrender.com/"
     },
     {
-      "id": 5,
+      "id": 6,
       "background": "/task.jpg",
       "name": "Task Manager",
       "startDate": "2025",

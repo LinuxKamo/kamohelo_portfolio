@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "motion/react";
-import meImage from "../../assets/me.jpg";
 
 export function Sidebar({ project }) {
   if (!project) return null;
