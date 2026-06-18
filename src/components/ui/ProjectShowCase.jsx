@@ -102,7 +102,7 @@ export function ProjectShowcase({
           </button>
 
           {/* Center video */}
-          <div className="relative w-full sm:w-[85vw] md:w-[650px] lg:w-[700px] h-[45vh] sm:h-[50vh] md:h-[60vh] max-h-[600px] flex-shrink-0 group">
+          <div className="relative w-full sm:w-[85vw] md:w-[650px] lg:w-[700px] h-[45vh] sm:h-[50vh] md:h-[60vh] max-h-[600px] shrink-0 group">
             {/* Ambient Glow */}
             <div className="absolute inset-0 bg-[#b08d3a]/20 blur-[80px] rounded-full opacity-50 mix-blend-screen pointer-events-none group-hover:opacity-80 transition-opacity duration-700" />
             
@@ -110,7 +110,7 @@ export function ProjectShowcase({
               key={`project-${project.id}`}
               layoutId={`project-${project.id}`}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute inset-0 w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-10 bg-black/50 backdrop-blur-sm ring-1 ring-white/5"
+              className="absolute inset-0 w-full h-full rounded-4xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-10 bg-black/50 backdrop-blur-sm ring-1 ring-white/5"
             >
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent z-10 pointer-events-none opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
               <video
