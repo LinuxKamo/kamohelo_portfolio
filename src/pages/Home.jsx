@@ -88,7 +88,13 @@ function Home() {
     }
   };
 
-  const currentProject = projects[currentProjectIndex];
+  const currentProject = projects[currentProjectIndex] || projects[0];
+
+  useEffect(() => {
+    if (!projects[currentProjectIndex]) {
+      setCurrentProjectIndex(0);
+    }
+  }, [currentProjectIndex, projects]);
 
   return (
     <div className="relative min-h-screen w-full bg-[#12100d] text-[#b08d3a] overflow-hidden flex flex-col items-center justify-center">

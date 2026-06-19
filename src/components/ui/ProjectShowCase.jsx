@@ -17,12 +17,14 @@ export function ProjectShowcase({
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
+  project = project || projects[0];
+
   useEffect(() => {
-    if (videoRef.current) {
+    if (project && videoRef.current) {
       videoRef.current.load();
       videoRef.current.play().catch(() => {});
     }
-  }, [project.id]);
+  }, [project?.id]);
 
 
 
